@@ -29,7 +29,7 @@ github_username:  j-adel
 instagram_username: j_adel__
 
 # Build settings
-theme: minimal
+theme: minima
 plugins:
   - jekyll-feed
 
