@@ -4,15 +4,4 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+I'm a PhD candidate in complex networks at Leiden University [Computational Network Science Group](https://www.computationalnetworkscience.org/) and guest researcher at University of Amsterdam as part of [PLANET-NL research group](www.planetworks.nl). My research centers around analyzing complex network dynamics in social networks. I aim to use computational methods to identify emergent patterns and self-organization in temporal (population-scale) networks. Additionally, I contribute for open knowledge initiatives and decentralized technologies.
