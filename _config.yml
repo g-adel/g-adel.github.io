@@ -18,20 +18,24 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Islam Adel
-email: islamelgamal97@gmail.com
+title: Gamal Adel
+email: i.m.a.f.elgamal@liacs.leidenuniv.nl
 description: >- # this means to ignore newlines until "baseurl:"
-  Islam Adel - Computational Scientist and Generative Artist based in Munich 
+  Gamal Adel - Computational Scientist and Generative Artist based in Munich 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: j_adel_
 github_username:  j-adel
 instagram_username: j_adel__
 
+header_pages:
+  - about.markdown
+  - projects.md
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
