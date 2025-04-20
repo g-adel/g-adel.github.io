@@ -1,0 +1,7 @@
+---
+layout: page
+title: Generative Art
+permalink: /generative/
+---
+
+here I have so many artworks it's scary

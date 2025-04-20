@@ -7,12 +7,29 @@ layout: default
     padding-right: 30px;
     padding-left: 30px;
   }
-  </style>
+  .intro-box {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 20px 0;
+  }
+</style>
 <div class="home">
   <div class="content-wrapper" style="display: flex; gap: 2rem;">
     <div class="main-content" style="flex: 2;">
       {{ content }}
       
+      <div>
+        <p>
+          Hi! I'm a PhD candidate in complex networks at Leiden University 
+          <a href="https://www.computationalnetworkscience.org/">Computational Network Science Group</a> 
+          and guest researcher at University of Amsterdam as part of 
+          <a href="http://www.planetworks.nl">PLANET-NL research group</a>. 
+          My research centers around analyzing complex network dynamics in social networks. I'm also an Open Knowledge Foundation Network member 
+        </p>
+      </div>
+
       {%- if site.posts.size > 0 -%}
       <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
       <ul class="post-list">
