@@ -27,7 +27,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: g_adel_
 github_username:  g-adel
 instagram_username: _g_adel
-bluesky_usernam: g-adel@bsky.app
+bluesky_username: g-adel.bsky.social
 
 # Build settings
 theme: minima
@@ -37,7 +37,7 @@ plugins:
 
 bluesky:
   username: g-adel.bsky.social
-  limit: 10
+  limit: 7
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
