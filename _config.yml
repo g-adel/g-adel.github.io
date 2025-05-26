@@ -23,7 +23,7 @@ email: elgamali@liacs.leidenuniv.nl
 description: >- # this means to ignore newlines until "baseurl:"
   Gamal Adel - PhD Candidate in social networks in Leiden and Amsterdam
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "gamaladel.com" 
 github_username:  g-adel
 instagram_username: _g_adel
 bluesky_username: g-adel.bsky.social
