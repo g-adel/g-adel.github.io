@@ -16,11 +16,9 @@ My current doctoral research centers on analyzing community dynamics and movemen
 
 **Academic Journey**
 
-My academic path began at The American University in Cairo (AUC), where I earned a Bachelor of Science in Mechatronics, while doing study abroads at Radboud University in the Netherlands and Aarhus University in Denmark. My undergraduate thesis, titled "Haptic Feedback Robotic Device for Neuromuscular Rehabilitation," involved the design of a 3 DOF haptic interface device with assistive force feedback. 
+My academic path began at The American University in Cairo (AUC), where I earned a Bachelor of Science in Mechatronics, where I also did study abroads at Radboud University and Aarhus University. My undergraduate thesis involved the design of a 3 DOF haptic interface device with assistive force feedback. 
 
-I found myself enjoying the numerical and modeling part of my studies the most, so I pursued a Master of Science in Computational Science at the Technical University of Munich (TUM). There, I studied simulation, modeling, analysis, and high-performance computing. During my Master's I was also reading a lot about non-linear dynamics and complex systems, which eventually led me down the facinating rabbit-hole that is networks.
-
-Beyond formal research, I've also engaged in teaching and outreach, serving as a Teaching Assistant for Engineering Dynamics & Machine Design courses at the AUC.
+Since I enjoyed the numerical and modeling part the most, I pursued a Master of Science in Computational Science at the Technical University of Munich (TUM). There, I studied simulation, modeling, analysis, and high-performance computing. During my Master's I was also reading a lot about non-linear dynamics and complex systems, which eventually led me down the facinating rabbit-hole that is networks.
 
 
  <!-- and developing and instructing an Algorithmic Art Course at the Cocoon Culture Centre. -->
