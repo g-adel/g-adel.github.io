@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | escape }}</title>
+  <style>
+    :root {
+      --golden-ratio: 1.61803398875;
+      --border-color: #333;
+      --bg-main: #f9f9f9;
+      --bg-sec: #eeeeee;
+      --bg-tert: #dedede;
+      --bg-quat: #d0d0d0;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      background-color: #ffffff; /* Dark background for letterboxing */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1, h2, h3 { margin-top: 0; }
+    p { line-height: 1.5; }
+
+    /* 
+      Root Constraint Container
+      - Fixed aspect ratio of 1.618
+      - Max dimensions fit within viewport
+    */
+    .golden-root {
+      background-color: #fff;
+      width: 100%;
+      height: 100%; 
+      /* Desktop Default: Aspect Ratio Constrained */
+      aspect-ratio: 1.618 / 1;
+      max-height: 100vh;
+      max-width: 161.8vh; /* 100vh * 1.618 */
+      
+      display: flex;
+      flex-direction: row-reverse; /* Right is Main */
+      /* border: 2px solid var(--border-color); REMOVED PER REQUEST */
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* 
+       REGION 1: Main Content 
+       The Big Square on the Right (Height = 100% of Root)
+       Width = Height
+    */
+    .golden-main {
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0; /* Force square */
+      border-left: 2px solid var(--border-color);
+      padding: 2rem;
+      background-color: var(--bg-main);
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
+    /* 
+       Left Column
+       Fills remaining width (Golden Rectangle)
+    */
+    .golden-col-left {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column-reverse; /* Bottom is Secondary */
+      height: 100%;
+      min-height: 0; /* Fix for nested flex scrolling/sizing */
+      min-width: 0;
+    }
+
+    /* 
+       REGION 2: Secondary
+       Bottom Left Square. Width = Width of Col. Height = Width.
+    */
+    .golden-secondary {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      border-top: 2px solid var(--border-color);
+      padding: 1.5rem;
+      background-color: var(--bg-sec);
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
+    /* 
+       Top Left Remainder 
+       Fills remaining height of Left Column.
+       Ideally a Golden Rectangle (Horizontal).
+    */
+    .golden-col-top-left {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row-reverse; /* Right part is the Square */
+      min-height: 0; /* Critical for passing height to children */
+      min-width: 0;
+    }
+
+    /*
+       REGION 3: Tertiary
+       Square inside the Top-Left strip.
+       Height = 100% of strip. Width = Height.
+    */
+    .golden-tertiary {
+      height: 100%; 
+      width: auto; /* explicit auto allows aspect-ratio to drive width */
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      border-left: 2px solid var(--border-color);
+      padding: 1rem;
+      background-color: var(--bg-tert);
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
+    /*
+       REGION 4: Quaternary (Container for top subdivision)
+       Remainder of the Top-Left strip.
+       Subdivided into:
+       - Bottom Square (Quinary)
+       - Top Rect (Senary/Quaternary content)
+    */
+    .golden-quaternary {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column-reverse; /* Bottom is Square */
+      /* padding: 1rem; removed padding from container */ 
+      overflow: hidden;
+    }
+
+    /* Inner Bottom Square */
+    .golden-quinary {
+        width: 100%;
+        aspect-ratio: 1/1;
+        flex-shrink: 0;
+        border-top: 2px solid var(--border-color);
+        background-color: #c0c0c0;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+    
+    /* Inner Top Remainder */
+    .golden-senary {
+        flex-grow: 1;
+        background-color: var(--bg-quat);
+        padding: 0.5rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+        
+        /* Flex centered content */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .golden-header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .golden-nav {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .golden-nav a {
+      text-decoration: none;
+      color: var(--border-color);
+      font-weight: bold;
+    }
+
+    .golden-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .golden-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .golden-social a {
+      text-decoration: none;
+      color: var(--border-color);
+      /* font-size: 0.9rem; */
+      /* border: 1px solid var(--border-color); */
+      /* padding: 0.2rem 0.5rem; */
+      /* border-radius: 4px; */ 
+      
+      /* New Icon Styles */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+    
+    .golden-social a:hover {
+        /* background-color: var(--border-color); */
+        color: #555; /* Slightly lighter on hover or brand color */
+        transform: scale(1.1);
+    }
+
+    .golden-social svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+
+
+    /* 
+       MOBILE / NARROW LAYOUT
+       Trigger if screen is narrower than the ideal ratio (vertical orientation)
+    */
+    @media (max-aspect-ratio: 1/1) {
+      body, html {
+        height: auto;
+        width: 100%;
+        background-color: #fff;
+        display: block;
+        overflow-x: auto;
+      }
+
+      .golden-root {
+        aspect-ratio: auto;
+        max-width: none;
+        max-height: none;
+        height: auto;
+        min-height: 100vh;
+        flex-direction: column; /* Stack vertically */
+        border: none;
+      }
+
+      /* Stack Order: Tertiary/Sec at top, Main at bottom */
+      
+      /* Main moves to bottom */
+      .golden-main {
+        border-left: none;
+        border-top: 2px solid var(--border-color);
+        order: 3; /* Bottom */
+        aspect-ratio: auto; 
+        height: auto;
+        min-height: 50vh; /* Give it space */
+      }
+
+      .golden-col-left {
+        flex-direction: column; /* Normal stack: Top then Bottom */
+        height: auto;
+        order: 1; 
+      }
+
+      /* Secondary (Bottom Left originally) -> Middle/Top */
+      .golden-secondary {
+        aspect-ratio: auto;
+        border-top: none;
+        border-bottom: 2px solid var(--border-color);
+        height: auto;
+        min-height: 200px;
+        order: 2; /* Below top group */
+      }
+
+      /* Top Left Group */
+      .golden-col-top-left {
+        flex-direction: column;
+        height: auto;
+        order: 1; /* Very top */
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .golden-tertiary {
+        aspect-ratio: auto;
+        height: auto;
+        min-height: 150px;
+        border-left: none;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .golden-quaternary {
+        aspect-ratio: auto;
+        height: auto;
+        min-height: 100px;
+        flex-direction: column; 
+      }
+      
+      .golden-quinary {
+          aspect-ratio: auto;
+          height: auto;
+          min-height: 100px;
+          border-top: none;
+          border-bottom: 2px solid var(--border-color);
+      }
+      
+      .golden-senary {
+          min-height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="golden-root">
+    
+    <!-- MAIN (Right Square) -->
+    <div class="golden-main">
+      {{ content }}
+    </div>
+
+    <!-- LEFT COLUMN -->
+    <div class="golden-col-left">
+
+      <!-- SECONDARY (Bottom Left Square) -->
+      <div class="golden-secondary">
+        {{ page.secondary_content | markdownify }}
+      </div>
+
+      <!-- TOP LEFT WRAPPER -->
+      <div class="golden-col-top-left">
+        
+        <!-- TERTIARY (Square inside Top Left) -->
+        <div class="golden-tertiary">
+          {{ page.tertiary_content | markdownify }}
+        </div>
+
+        <!-- QUATERNARY (Remainder of Top Left) -->
+        <div class="golden-quaternary">
+            <!-- Quinary: Bottom Square -->
+            <div class="golden-quinary">
+                {{ page.quinary_content | markdownify }}
+            </div>
+            <!-- Senary: Top Remainder (using quaternary content) -->
+            <div class="golden-senary">
+                <div class="golden-header">
+                  <h1 style="font-size: 2.2rem;">Gamal Adel</h1>
+
+                  <nav class="golden-nav" style="justify-content: center;">
+                    <a href="/about/">About</a>
+                    <a href="/contact/">Contact</a>
+                  </nav>
+                  
+                  <div class="golden-social">
+                    {% if site.github_username %}
+                    <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener" aria-label="GitHub">
+                      <svg><use xlink:href="#icon-github"></use></svg>
+                    </a>
+                    {% endif %}
+                    
+                    {% if site.instagram_username %}
+                    <a href="https://instagram.com/{{ site.instagram_username }}" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg><use xlink:href="#icon-instagram"></use></svg>
+                    </a>
+                    {% endif %}
+
+                    {% if site.bluesky_username %}
+                    <a href="https://bsky.app/profile/{{ site.bluesky_username }}" target="_blank" rel="noopener" aria-label="Bluesky">
+                      <svg><use xlink:href="#icon-bluesky"></use></svg>
+                    </a>
+                    {% endif %}
+                    
+                    <!-- Added manually for now per request -->
+                    <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+                       <svg><use xlink:href="#icon-linkedin"></use></svg>
+                    </a>
+                    
+                    <a href="https://scholar.google.com/citations?user=yourscholarid" target="_blank" rel="noopener" aria-label="Google Scholar">
+                       <svg><use xlink:href="#icon-scholar"></use></svg>
+                    </a>
+
+                    <a href="mailto:{{ site.email }}" aria-label="Email">
+                       <svg><use xlink:href="#icon-mail"></use></svg>
+                    </a>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    
+    </div> <!-- End Left Col -->
+
+  </div>
+
+</body>
+</html>

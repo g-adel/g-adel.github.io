@@ -26,8 +26,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "gamaladel.com" 
 github_username:  g-adel
 instagram_username: _g_adel
-bluesky_username: g-adel.bsky.social
-
+bluesky_username: gamal-adel.bsky.social
+linkedin_username:  gamal-adel-30347b118/
 # Build settings
 theme: minima
 plugins:
