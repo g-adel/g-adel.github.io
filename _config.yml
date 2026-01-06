@@ -28,11 +28,19 @@ github_username:  g-adel
 instagram_username: _g_adel
 bluesky_username: gamal-adel.bsky.social
 linkedin_username:  gamal-adel-30347b118/
+
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-bluesky
+
+# Default layout for all pages
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: golden
 
 # Exclude from processing.
 # The following items will not be processed, by default.

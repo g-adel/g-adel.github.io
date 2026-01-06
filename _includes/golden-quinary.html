@@ -1,0 +1,12 @@
+{% if page.quinary_content %}
+  {{ page.quinary_content | markdownify }}
+{% else %}
+  <!-- Default quinary content -->
+  <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Interests</h3>
+  <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
+    <li>Complex Networks</li>
+    <li>Social Dynamics</li>
+    <li>Generative Art</li>
+    <li>Open Knowledge</li>
+  </ul>
+{% endif %}

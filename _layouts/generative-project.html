@@ -1,0 +1,32 @@
+---
+layout: golden
+---
+
+{{ content }}
+
+{% assign current_project = page.project_name %}
+
+<div class="project-gallery">
+{% for file in page.project_files %}
+  {% assign file_ext = file | split: '.' | last %}
+  {% if file_ext == 'mp4' or file_ext == 'webm' %}
+    <div class="gallery-item">
+      <video controls style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+        <source src="/Generative/{{ file }}" type="video/{{ file_ext }}">
+        Your browser does not support the video tag.
+      </video>
+      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
+    </div>
+  {% elsif file_ext == 'gif' %}
+    <div class="gallery-item">
+      <img src="/Generative/{{ file }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
+    </div>
+  {% else %}
+    <div class="gallery-item">
+      <img src="/Generative/{{ file }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
+    </div>
+  {% endif %}
+{% endfor %}
+</div>

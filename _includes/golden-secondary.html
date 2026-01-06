@@ -1,0 +1,14 @@
+{% if page.secondary_content %}
+  {{ page.secondary_content | markdownify }}
+{% else %}
+  <!-- Default secondary content -->
+  <h2>About</h2>
+  <p>PhD candidate in complex networks at Leiden University, researching social network dynamics and emergent patterns.</p>
+  
+  <h3>Quick Links</h3>
+  <ul>
+    <li><a href="/about/">Full About</a></li>
+    <li><a href="/research/">Research</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+{% endif %}

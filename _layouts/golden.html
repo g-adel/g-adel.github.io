@@ -10,9 +10,9 @@
       --golden-ratio: 1.61803398875;
       --border-color: #333;
       --bg-main: #f9f9f9;
-      --bg-sec: #eeeeee;
-      --bg-tert: #dedede;
-      --bg-quat: #d0d0d0;
+      --bg-sec: #f9f9f9;
+      --bg-tert: #f9f9f9;
+      --bg-quat: #f9f9f9;
     }
 
     body, html {
@@ -147,7 +147,7 @@
         aspect-ratio: 1/1;
         flex-shrink: 0;
         border-top: 2px solid var(--border-color);
-        background-color: #c0c0c0;
+        background-color: var(--bg-quat);
         padding: 0.5rem;
         box-sizing: border-box;
         overflow-y: auto;
@@ -207,8 +207,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 2rem;
-      height: 2rem;
+      width: 1.3rem;
+      height: 1.3rem;
       transition: color 0.2s, transform 0.2s;
     }
     
@@ -315,9 +315,11 @@
 </head>
 <body>
 
+  {% include social-icons-svg.html %}
+
   <div class="golden-root">
     
-    <!-- MAIN (Right Square) -->
+    <!-- MAIN (Right Square) - Primary Content Area -->
     <div class="golden-main">
       {{ content }}
     </div>
@@ -327,7 +329,7 @@
 
       <!-- SECONDARY (Bottom Left Square) -->
       <div class="golden-secondary">
-        {{ page.secondary_content | markdownify }}
+        {% include golden-secondary.html %}
       </div>
 
       <!-- TOP LEFT WRAPPER -->
@@ -335,58 +337,18 @@
         
         <!-- TERTIARY (Square inside Top Left) -->
         <div class="golden-tertiary">
-          {{ page.tertiary_content | markdownify }}
+          {% include golden-tertiary.html %}
         </div>
 
         <!-- QUATERNARY (Remainder of Top Left) -->
         <div class="golden-quaternary">
             <!-- Quinary: Bottom Square -->
             <div class="golden-quinary">
-                {{ page.quinary_content | markdownify }}
+              {% include golden-quinary.html %}
             </div>
-            <!-- Senary: Top Remainder (using quaternary content) -->
+            <!-- Senary: Top Remainder - Header & Navigation -->
             <div class="golden-senary">
-                <div class="golden-header">
-                  <h1 style="font-size: 2.2rem;">Gamal Adel</h1>
-
-                  <nav class="golden-nav" style="justify-content: center;">
-                    <a href="/about/">About</a>
-                    <a href="/contact/">Contact</a>
-                  </nav>
-                  
-                  <div class="golden-social">
-                    {% if site.github_username %}
-                    <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener" aria-label="GitHub">
-                      <svg><use xlink:href="#icon-github"></use></svg>
-                    </a>
-                    {% endif %}
-                    
-                    {% if site.instagram_username %}
-                    <a href="https://instagram.com/{{ site.instagram_username }}" target="_blank" rel="noopener" aria-label="Instagram">
-                        <svg><use xlink:href="#icon-instagram"></use></svg>
-                    </a>
-                    {% endif %}
-
-                    {% if site.bluesky_username %}
-                    <a href="https://bsky.app/profile/{{ site.bluesky_username }}" target="_blank" rel="noopener" aria-label="Bluesky">
-                      <svg><use xlink:href="#icon-bluesky"></use></svg>
-                    </a>
-                    {% endif %}
-                    
-                    <!-- Added manually for now per request -->
-                    <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener" aria-label="LinkedIn">
-                       <svg><use xlink:href="#icon-linkedin"></use></svg>
-                    </a>
-                    
-                    <a href="https://scholar.google.com/citations?user=yourscholarid" target="_blank" rel="noopener" aria-label="Google Scholar">
-                       <svg><use xlink:href="#icon-scholar"></use></svg>
-                    </a>
-
-                    <a href="mailto:{{ site.email }}" aria-label="Email">
-                       <svg><use xlink:href="#icon-mail"></use></svg>
-                    </a>
-                  </div>
-                </div>
+              {% include golden-header.html %}
             </div>
         </div>
       </div>

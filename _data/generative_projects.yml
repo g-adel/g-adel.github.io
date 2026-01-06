@@ -1,0 +1,33 @@
+- name: CircPath
+  files:
+    - CircPath_1.png
+
+- name: Pixels
+  files:
+    - Pixels_1.gif
+
+- name: Salt
+  files:
+    - Salt_1.png
+    - Salt_2.mp4
+    - Salt_3.png
+
+- name: Sand
+  files:
+    - Sand_1.png
+    - Sand_2.mp4
+
+- name: Sorted
+  files:
+    - Sorted_1.png
+
+- name: Trails
+  files:
+    - Trails_1.png
+    - Trails_2.png
+
+- name: Transformations
+  files:
+    - Transformations_1.mp4
+    - Transformations_1.png
+    - Transformations_2.png
