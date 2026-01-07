@@ -4,29 +4,31 @@ layout: golden
 
 {{ content }}
 
-{% assign current_project = page.project_name %}
+{% assign current_project = page.title %}
+{% assign project_dir = page.path | remove: 'index.md' %}
+{% assign generative_collection = site.collections | where: "label", "generative" | first %}
 
 <div class="project-gallery">
-{% for file in page.project_files %}
-  {% assign file_ext = file | split: '.' | last %}
-  {% if file_ext == 'mp4' or file_ext == 'webm' %}
-    <div class="gallery-item">
-      <video controls style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-        <source src="/Generative/{{ file }}" type="video/{{ file_ext }}">
-        Your browser does not support the video tag.
-      </video>
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
-    </div>
-  {% elsif file_ext == 'gif' %}
-    <div class="gallery-item">
-      <img src="/Generative/{{ file }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
-    </div>
-  {% else %}
-    <div class="gallery-item">
-      <img src="/Generative/{{ file }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
-    </div>
+{% for file in generative_collection.files %}
+  {% if file.path contains project_dir %}
+    {% assign file_ext = file.path | split: '.' | last | downcase %}
+    {% if "jpg jpeg png gif mp4 webm" contains file_ext %}
+      {% assign file_name = file.path | split: '/' | last %}
+      {% assign file_url = file.path | relative_url | replace: '/_generative/', '/generative/' %}
+      {% if file_ext == 'mp4' or file_ext == 'webm' %}
+        <div class="gallery-item">
+          <video src="{{ file_url }}" controls autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+            Your browser does not support the video tag.
+          </video>
+          <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file_name }}</p>
+        </div>
+      {% else %}
+        <div class="gallery-item">
+          <img src="{{ file_url }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+          <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file_name }}</p>
+        </div>
+      {% endif %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 </div>

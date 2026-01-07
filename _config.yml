@@ -35,6 +35,10 @@ plugins:
   - jekyll-feed
   - jekyll-bluesky
 
+collections:
+  generative:
+    output: true
+
 # Default layout for all pages
 defaults:
   - scope:

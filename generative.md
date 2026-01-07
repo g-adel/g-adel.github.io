@@ -15,26 +15,56 @@ Click on any project to explore the full collection.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
 
-{% for project in site.data.generative_projects %}
+{% assign generative_collection = site.collections | where: "label", "generative" | first %}
+{% for project in site.generative %}
+  {% assign project_dir = project.path | remove: 'index.md' %}
+  {% assign first_file = nil %}
+  
+  {% for file in generative_collection.files %}
+    {% if file.path contains project_dir %}
+        {% assign ext = file.path | split: '.' | last | downcase %}
+        {% if "jpg jpeg png gif mp4 webm" contains ext %}
+            {% assign first_file = file %}
+            {% break %}
+        {% endif %}
+    {% endif %}
+  {% endfor %}
+
   <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 4px; transition: box-shadow 0.2s;">
     <h3 style="margin-top: 0;">
-      <a href="/generative/{{ project.name | downcase }}/" style="text-decoration: none; color: #333;">
-        {{ project.name }}
+      <a href="{{ project.url }}" style="text-decoration: none; color: #333;">
+        {{ project.title }}
       </a>
     </h3>
-    <a href="/generative/{{ project.name | downcase }}/" style="display: block;">
-      {% assign first_file = project.files[0] %}
-      {% assign file_ext = first_file | split: '.' | last %}
-      {% if file_ext == 'mp4' or file_ext == 'webm' %}
-        <video style="width: 100%; height: auto;" muted loop onmouseover="this.play()" onmouseout="this.pause()">
-          <source src="/Generative/{{ first_file }}" type="video/{{ file_ext }}">
-        </video>
+    <a href="{{ project.url }}" style="display: block;">
+      {% if first_file %}
+        {% assign file_ext = first_file.path | split: '.' | last | downcase %}
+        {% assign file_url = first_file.path | relative_url | replace: '/_generative/', '/generative/' %}
+        {% if file_ext == 'mp4' or file_ext == 'webm' %}
+            <video src="{{ file_url }}" style="width: 100%; height: auto;" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+            </video>
+        {% else %}
+            <img src="{{ file_url }}" alt="{{ project.title }}" style="width: 100%; height: auto;">
+        {% endif %}
       {% else %}
-        <img src="/Generative/{{ first_file }}" alt="{{ project.name }}" style="width: 100%; height: auto;">
+        <div style="width: 100%; height: 200px; background: #eee; display: flex; align-items: center; justify-content: center;">
+            No Preview
+        </div>
       {% endif %}
     </a>
+    
+    {% assign file_count = 0 %}
+    {% for file in generative_collection.files %}
+        {% if file.path contains project_dir %}
+             {% assign ext = file.path | split: '.' | last | downcase %}
+             {% if "jpg jpeg png gif mp4 webm" contains ext %}
+                {% assign file_count = file_count | plus: 1 %}
+             {% endif %}
+        {% endif %}
+    {% endfor %}
+
     <p style="font-size: 0.9rem; color: #666; margin-bottom: 0;">
-      {{ project.files | size }} {% if project.files.size == 1 %}piece{% else %}pieces{% endif %}
+      {{ file_count }} {% if file_count == 1 %}piece{% else %}pieces{% endif %}
     </p>
   </div>
 {% endfor %}

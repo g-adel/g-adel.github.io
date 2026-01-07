@@ -1,4 +1,13 @@
-{% if page.secondary_content %}
+{% if page.layout == 'generative-project' %}
+  <h2>Other Projects</h2>
+  <ul>
+  {% for project in site.generative %}
+    {% if project.title != page.title %}
+      <li><a href="{{ project.url }}">{{ project.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% elsif page.secondary_content %}
   {{ page.secondary_content | markdownify }}
 {% else %}
   <!-- Default secondary content -->
