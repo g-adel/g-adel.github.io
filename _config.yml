@@ -33,13 +33,13 @@ linkedin_username:  gamal-adel-30347b118/
 collections:
   generative:
     output: true
-    permalink: /generative/:name/
+    permalink: /:collection/:path/
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-bluesky
+  - jekyll_bluesky
 
 # Default layout for all pages
 defaults:

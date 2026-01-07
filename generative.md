@@ -17,9 +17,9 @@ Click on any project to explore the full collection.
 
 {% for project in site.generative %}
   {% comment %}Get the first media file from this project's folder{% endcomment %}
-  {% assign project_path = project.path | split: "/" | slice: 0, 2 | join: "/" %}
-  {% assign project_files = site.static_files | where_exp: "file", "file.path contains project_path" %}
-  {% assign media_files = project_files | where_exp: "file", "file.extname == '.png' or file.extname == '.jpg' or file.extname == '.gif' or file.extname == '.mp4'" | sort: "name" %}
+  {% assign all_gen_files = site.static_files | where_exp: "file", "file.url contains '/generative/'" %}
+  {% assign project_media = all_gen_files | where_exp: "file", "file.name contains project.title" %}
+  {% assign media_files = project_media | where_exp: "file", "file.extname == '.png' or file.extname == '.jpg' or file.extname == '.gif' or file.extname == '.mp4'" | sort: "name" %}
   {% assign first_file = media_files | first %}
   {% assign file_count = media_files | size %}
   
@@ -34,10 +34,10 @@ Click on any project to explore the full collection.
         {% assign file_ext = first_file.extname | remove: '.' %}
         {% if file_ext == 'mp4' or file_ext == 'webm' %}
           <video style="width: 100%; height: auto;" muted loop onmouseover="this.play()" onmouseout="this.pause()">
-            <source src="{{ first_file.path }}" type="video/{{ file_ext }}">
+            <source src="{{ first_file.url }}" type="video/{{ file_ext }}">
           </video>
         {% else %}
-          <img src="{{ first_file.path }}" alt="{{ project.title }}" style="width: 100%; height: auto;">
+          <img src="{{ first_file.url }}" alt="{{ project.title }}" style="width: 100%; height: auto;">
         {% endif %}
       {% endif %}
     </a>
