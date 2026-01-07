@@ -2,6 +2,7 @@
 layout: generative-project
 title: "CircPath"
 project_name: CircPath
+color_mode: light
 ---
 
 # CircPath

@@ -1,12 +1,81 @@
 {% if page.layout == 'generative-project' %}
-  <h2>Other Projects</h2>
-  <ul>
-  {% for project in site.generative %}
-    {% if project.title != page.title %}
-      <li><a href="{{ project.url }}">{{ project.title }}</a></li>
-    {% endif %}
-  {% endfor %}
-  </ul>
+  {% assign generative_collection = site.collections | where: "label", "generative" | first %}
+  
+  <style>
+    .secondary-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .secondary-gallery-item {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+    .secondary-gallery-item:hover {
+        opacity: 0.8;
+    }
+    .secondary-gallery-item img, 
+    .secondary-gallery-item video {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--border-color);
+      box-sizing: border-box;
+    }
+    .gallery-caption {
+       display: block;
+       font-size: 0.8em;
+       text-align: center;
+       word-wrap: break-word;
+    }
+  </style>
+
+  <h3>More Projects</h3>
+  <div class="secondary-gallery-grid">
+    {% for project in site.generative %}
+      {% if project.title != page.title %}
+        {% assign project_dir = project.path | remove: 'index.md' %}
+        {% assign thumb_url = "" %}
+        {% assign is_video = false %}
+        
+        {% comment %} Find first image or video for this project {% endcomment %}
+        {% for file in generative_collection.files %}
+            {% if file.path contains project_dir %}
+                {% assign file_ext = file.path | split: '.' | last | downcase %}
+                {% if "jpg jpeg png gif mp4 webm" contains file_ext %}
+                    {% assign thumb_url = file.path | relative_url | replace: '/_generative/', '/generative/' %}
+                    {% if "mp4 webm" contains file_ext %}
+                        {% assign is_video = true %}
+                    {% endif %}
+                    {% break %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        <a href="{{ project.url }}" class="secondary-gallery-item">
+          {% if thumb_url != "" %}
+              {% if is_video %}
+                 <video src="{{ thumb_url }}" muted playsinline loop onmouseover="this.play()" onmouseout="this.pause()" style="object-fit: cover;"></video>
+              {% else %}
+                 <img src="{{ thumb_url }}" alt="{{ project.title }}">
+              {% endif %}
+          {% else %}
+              <div style="aspect-ratio: 1/1; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid var(--border-color);">
+                <span style="font-size:0.7em;">No Preview</span>
+              </div>
+          {% endif %}
+          <span class="gallery-caption">{{ project.title }}</span>
+        </a>
+
+      {% endif %}
+    {% endfor %}
+  </div>
+
 {% elsif page.secondary_content %}
   {{ page.secondary_content | markdownify }}
 {% else %}

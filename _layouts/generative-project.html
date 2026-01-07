@@ -20,12 +20,12 @@ layout: golden
           <video src="{{ file_url }}" controls autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 2rem;">
             Your browser does not support the video tag.
           </video>
-          <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file_name }}</p>
+          <p style="text-align: center; opacity: 0.8; font-size: 0.9rem;">{{ file_name }}</p>
         </div>
       {% else %}
         <div class="gallery-item">
           <img src="{{ file_url }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-          <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file_name }}</p>
+          <p style="text-align: center; opacity: 0.8; font-size: 0.9rem;">{{ file_name }}</p>
         </div>
       {% endif %}
     {% endif %}

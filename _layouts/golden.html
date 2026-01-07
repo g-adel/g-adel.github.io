@@ -5,11 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title | escape }}</title>
+  <link rel="icon" href="{{ '/assets/logo_processed_2_transparent.ico' | relative_url }}" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="{{ '/assets/logo_processed_2_inverted_transparent.ico' | relative_url }}" media="(prefers-color-scheme: dark)">
   <style>
+    {% if page.color_mode == 'dark' %}
+      {% assign bg_main_val = '#111111' %}
+      {% assign text_main_val = '#f9f9f9' %}
+    {% else %}
+      {% assign bg_main_val = '#f9f9f9' %}
+      {% assign text_main_val = '#333333' %}
+    {% endif %}
+
     :root {
       --golden-ratio: 1.61803398875;
       --border-color: #333;
-      --bg-main: #f9f9f9;
+      --bg-main: {{ bg_main_val }};
+      --text-main: {{ text_main_val }};
       --bg-sec: #f9f9f9;
       --bg-tert: #f9f9f9;
       --bg-quat: #f9f9f9;
@@ -64,6 +75,7 @@
       border-left: 2px solid var(--border-color);
       padding: 2rem;
       background-color: var(--bg-main);
+      color: var(--text-main);
       overflow-y: auto;
       box-sizing: border-box;
     }
