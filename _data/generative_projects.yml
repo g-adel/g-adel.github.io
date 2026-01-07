@@ -28,6 +28,6 @@
 
 - name: Transformations
   files:
-    - Transformations_1.mp4
     - Transformations_1.png
     - Transformations_2.png
+    - Transformations_3.mp4

@@ -29,6 +29,12 @@ instagram_username: _g_adel
 bluesky_username: gamal-adel.bsky.social
 linkedin_username:  gamal-adel-30347b118/
 
+# Collections
+collections:
+  generative:
+    output: true
+    permalink: /generative/:name/
+
 # Build settings
 theme: minima
 plugins:
@@ -41,6 +47,11 @@ defaults:
       path: ""
     values:
       layout: golden
+  - scope:
+      path: ""
+      type: "generative"
+    values:
+      layout: generative-project
 
 # Exclude from processing.
 # The following items will not be processed, by default.

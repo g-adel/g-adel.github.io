@@ -1,31 +1,42 @@
 ---
 layout: golden
+secondary_content_override: true
 ---
 
 {{ content }}
 
-{% assign current_project = page.project_name %}
+{% comment %}
+Auto-discover all media files in this project's folder
+Filter static files by the project's directory path
+{% endcomment %}
+
+{% assign project_name = page.title %}
+{% assign project_path = page.path | split: "/" | first %}
+{% assign project_files = site.static_files | where_exp: "file", "file.path contains project_path" %}
+
+{% comment %}Filter for media files only and sort by name{% endcomment %}
+{% assign media_files = project_files | where_exp: "file", "file.extname == '.png' or file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.gif' or file.extname == '.mp4' or file.extname == '.webm'" | sort: "name" %}
 
 <div class="project-gallery">
-{% for file in page.project_files %}
-  {% assign file_ext = file | split: '.' | last %}
+{% for file in media_files %}
+  {% assign file_ext = file.extname | remove: '.' %}
   {% if file_ext == 'mp4' or file_ext == 'webm' %}
     <div class="gallery-item">
-      <video controls style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-        <source src="/Generative/{{ file }}" type="video/{{ file_ext }}">
+      <video controls autoplay loop muted style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+        <source src="{{ file.path }}" type="video/{{ file_ext }}">
         Your browser does not support the video tag.
       </video>
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
+      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file.name }}</p>
     </div>
   {% elsif file_ext == 'gif' %}
     <div class="gallery-item">
-      <img src="/Generative/{{ file }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
+      <img src="{{ file.path }}" alt="{{ project_name }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file.name }}</p>
     </div>
   {% else %}
     <div class="gallery-item">
-      <img src="/Generative/{{ file }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file }}</p>
+      <img src="{{ file.path }}" alt="{{ project_name }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
+      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file.name }}</p>
     </div>
   {% endif %}
 {% endfor %}

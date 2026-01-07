@@ -329,7 +329,11 @@
 
       <!-- SECONDARY (Bottom Left Square) -->
       <div class="golden-secondary">
-        {% include golden-secondary.html %}
+        {% if layout.secondary_content_override %}
+          {% include generative-nav.html %}
+        {% else %}
+          {% include golden-secondary.html %}
+        {% endif %}
       </div>
 
       <!-- TOP LEFT WRAPPER -->
