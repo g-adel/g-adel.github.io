@@ -7,4 +7,3 @@ color_mode: light
 
 # Sorted
 
-Visualizing sorting algorithms and ordered structures.

@@ -1,8 +1,9 @@
 ---
 layout: generative-project
-title: "Pixels"
-project_name: Pixels
+title: "Circular"
+project_name: Circular
 color_mode: light
 ---
 
-# Pixels
+# Circular
+

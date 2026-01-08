@@ -9,9 +9,7 @@ secondary_content: |
   Each project represents a different exploration of generative systems.
 ---
 
-# Generative Art Gallery
-
-Click on any project to explore the full collection.
+# Generative Art
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
 

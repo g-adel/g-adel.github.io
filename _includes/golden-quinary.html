@@ -2,11 +2,9 @@
   {{ page.quinary_content | markdownify }}
 {% else %}
   <!-- Default quinary content -->
-  <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Interests</h3>
-  <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
-    <li>Complex Networks</li>
-    <li>Social Dynamics</li>
-    <li>Generative Art</li>
-    <li>Open Knowledge</li>
+  <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
+    <li style="margin-bottom: 1rem;"><h2><a href="/research" style="text-decoration: none; color: inherit;">Research</a></h2></li>
+    <li style="margin-bottom: 1rem;"><h2><a href="/activism" style="text-decoration: none; color: inherit;">Activism</a></h2></li>
+    <li ><h2><a href="/generative" style="text-decoration: none; color: inherit;">Generative Art</a></h2></li>
   </ul>
 {% endif %}

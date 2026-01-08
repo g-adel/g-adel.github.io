@@ -2,7 +2,7 @@
   {{ page.tertiary_content | markdownify }}
 {% else %}
   <!-- Default tertiary content -->
-  <h3>Latest Updates</h3>
+  <!-- <h3>Latest Updates</h3>
   <ul>
     {% for post in site.posts limit:3 %}
       <li>
@@ -10,5 +10,5 @@
         <br><small>{{ post.date | date: "%b %d, %Y" }}</small>
       </li>
     {% endfor %}
-  </ul>
+  </ul> -->
 {% endif %}
