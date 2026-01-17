@@ -2,9 +2,11 @@
   {{ page.quinary_content | markdownify }}
 {% else %}
   <!-- Default quinary content -->
-  <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
-    <li style="margin-bottom: 1rem;"><h2><a href="/research" style="text-decoration: none; color: inherit;">Research</a></h2></li>
-    <li style="margin-bottom: 1rem;"><h2><a href="/activism" style="text-decoration: none; color: inherit;">Activism</a></h2></li>
-    <li ><h2><a href="/generative" style="text-decoration: none; color: inherit;">Generative Art</a></h2></li>
-  </ul>
+  <div style="display:flex; flex-direction:column; justify-content:center; height:100%; align-items:center;">
+    <ul class="golden-quinary-links" style="display:flex; flex-direction:column; gap:1.0rem; margin:0; padding:0; list-style:none; text-align:center;">
+      <li><h2><a href="/research">Research</a></h2></li>
+      <li><h2><a href="/activism">Activism</a></h2></li>
+      <li><h2><a href="/generative">Generative Art</a></h2></li>
+    </ul>
+  </div>
 {% endif %}

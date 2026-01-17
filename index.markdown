@@ -20,18 +20,23 @@ secondary_content: |
     </div>
 ---
 
-# Welcome
+<img src="{{ '/assets/Como picture - Cropped.jpg' | relative_url }}" alt="Gamal Adel" style="display: block; margin: -1rem auto 1.5rem; width: 70%; border-radius: 4px;">
 
-I'm **Gamal Adel**, an Egyptian PhD researcher at Leiden University specializing in network science. 
+## Welcome!
 
-## Research
+I'm **Gamal Adel (جمال عادل)**, an Egyptian PhD researcher at Leiden University specializing in network science. 
 
-My work focuses on analyzing community dynamics and movement patterns in temporal, population-scale networks using computational methods. As part of the [PLANET-NL research group](http://www.planetworks.nl), I develop novel analytical methods to understand emergent patterns and self-organization in complex systems. Check out my [research](/research/) page for publications.
+### [Research](/research/) <svg class="icon-external"><use xlink:href="#icon-external"></use></svg>
 
-## Activism
+My work focuses on analyzing community dynamics and movement patterns in temporal, population-scale networks using computational methods. As part of the [PLANET-NL research group](http://www.planetworks.nl), I develop novel analytical methods to understand emergent patterns and self-organization in complex systems. 
+<!-- Check out my [research](/research/) page for publications. -->
 
-I also attempt to be involved in the activism movement generally described as open knowledge and collective action. Check out my [activism](/activism/) page for more details.
+### [Activism](/activism/) <svg class="icon-external"><use xlink:href="#icon-external"></use></svg>
 
-## Generative Art
+I also attempt to be involved in the activism movement generally described as open knowledge and collective action. 
+<!-- Check out my [activism](/activism/) page for more details. -->
 
-Given how much I'm facinated by complexity and emergence, it's no wonder I've gravitated towards generative (not AI!) artwork. I've been doing it for years and even worked professionally in immersive art spaces for a while. You can check out some of my artworks [here](/generative/) or on my [Instagram](https://www.instagram.com/_g_adel/).
+### [Generative Art](/generative/) <svg class="icon-external"><use xlink:href="#icon-external"></use></svg>
+
+Given how much I'm facinated by complexity and emergence, it's no wonder I've gravitated towards generative (not AI!) artwork. I've been doing it for years and even worked professionally in immersive art spaces for a while. 
+<!-- You can check out some of my artworks [here](/generative/) or on my [Instagram](https://www.instagram.com/_g_adel/). -->

@@ -7,7 +7,7 @@ secondary_content: |
 
 # Generative Art
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+<div class="generative-grid">
 
 {% assign generative_collection = site.collections | where: "label", "generative" | first %}
 {% for project in site.generative %}
@@ -24,25 +24,25 @@ secondary_content: |
     {% endif %}
   {% endfor %}
 
-  <div style="padding: 0rem; border-radius: 4px; transition: box-shadow 0.2s;">
-     <h3 style="margin-top: 0; text-align: center;">
-      <a href="{{ project.url }}" style="text-decoration: none; color: #333;">
+  <div class="generative-item">
+     <h3>
+      <a href="{{ project.url }}">
         {{ project.title }}
       </a>
         </h3>
-        <a href="{{ project.url }}" style="display: block; text-align: center;">
+        <a href="{{ project.url }}" class="generative-item-link">
       {% if first_file %}
         {% assign file_ext = first_file.path | split: '.' | last | downcase %}
         {% assign file_url = first_file.path | relative_url | replace: '/_generative/', '/generative/' %}
         {% if file_ext == 'mp4' or file_ext == 'webm' %}
-        <video src="{{ file_url }}" style="width: 100%; height: auto;" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+        <video src="{{ file_url }}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
         </video>
         {% else %}
-        <img src="{{ file_url }}" alt="{{ project.title }}" style="width: 100%; height: auto;">
+        <img src="{{ file_url }}" alt="{{ project.title }}">
         {% endif %}
       {% else %}
-        <div style="width: 100%; height: 200px; background: #eee; display: flex; align-items: center; justify-content: center;">
-        No Preview
+        <div class="no-preview-placeholder">
+          <span>No Preview</span>
         </div>
       {% endif %}
         </a>

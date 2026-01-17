@@ -16,15 +16,15 @@ layout: golden
       {% assign file_name = file.path | split: '/' | last %}
       {% assign file_url = file.path | relative_url | replace: '/_generative/', '/generative/' %}
       {% if file_ext == 'mp4' or file_ext == 'webm' %}
-      <div class="gallery-item" style="text-align: center;">
-        <video src="{{ file_url }}" controls autoplay loop muted playsinline style="max-width: 100%; height: auto; margin-bottom: 2rem; margin-left: auto; margin-right: auto; display: block;">
+      <div class="gallery-item">
+        <video src="{{ file_url }}" controls autoplay loop muted playsinline>
         Your browser does not support the video tag.
         </video>
         <!-- <p style="text-align: center; opacity: 0.8; font-size: 0.9rem;">{{ file_name }}</p> -->
       </div>
       {% else %}
-      <div class="gallery-item" style="text-align: center;">
-        <img src="{{ file_url }}" alt="{{ current_project }}" style="max-width: 100%; height: auto; margin-bottom: 2rem; margin-left: auto; margin-right: auto; display: block;">
+      <div class="gallery-item">
+        <img src="{{ file_url }}" alt="{{ current_project }}">
         <!-- <p style="text-align: center; opacity: 0.8; font-size: 0.9rem;">{{ file_name }}</p> -->
       </div>
       {% endif %}
