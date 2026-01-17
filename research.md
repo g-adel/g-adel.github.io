@@ -22,6 +22,6 @@ My academic path began at The American University in Cairo (AUC), where I earned
 
 ## Academic Profiles
 
-[**Google Scholar**](https://scholar.google.com/citations?user=-jdIzywAAAAJ&hl=en) - [**ORCID**](https://orcid.org/my-orcid?orcid=0009-0001-1369-1504) - [**Semantic Scholar**](https://www.semanticscholar.org/author/1580208659)
+[**Google Scholar**](https://scholar.google.com/citations?user=-jdIzywAAAAJ&hl=en) - [**ORCID**](https://orcid.org/orcid=0009-0001-1369-1504) - [**Semantic Scholar**](https://www.semanticscholar.org/author/1580208659)
 
 
