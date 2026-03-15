@@ -1,7 +1,8 @@
 ---
-title: Trails
-description: Motion and pathways
-permalink: /generative/trails/
+layout: generative-project
+title: "Trails"
+project_name: Trails
+color_mode: light
 ---
 
-Capturing motion and pathways through generative processes.
+# Trails

@@ -1,7 +1,8 @@
 ---
-title: Sand
-description: Sand particle flow
-permalink: /generative/sand/
+layout: generative-project
+title: "Sand"
+project_name: Sand
+color_mode: dark
 ---
 
-Simulating the flow and patterns of sand particles.
+# Sand

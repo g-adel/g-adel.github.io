@@ -1,7 +1,8 @@
 ---
-title: Salt
-description: Crystalline structures
-permalink: /generative/salt/
+layout: generative-project
+title: "Salt"
+project_name: Salt
+color_mode: dark
 ---
 
-Exploring crystalline patterns and salt-like structures through code.
+# Salt

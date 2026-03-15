@@ -2,49 +2,64 @@
 title: Generative Art
 permalink: /generative/
 secondary_content: |
-  ## About
-  
-  A collection of algorithmic art exploring patterns, emergence, and computational aesthetics.
-  
-  Each project represents a different exploration of generative systems.
+
 ---
 
-# Generative Art Gallery
+# Generative Art
 
-Click on any project to explore the full collection.
+<div class="generative-grid">
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-
+{% assign generative_collection = site.collections | where: "label", "generative" | first %}
 {% for project in site.generative %}
-  {% comment %}Get the first media file from this project's folder{% endcomment %}
-  {% assign all_gen_files = site.static_files | where_exp: "file", "file.url contains '/generative/'" %}
-  {% assign project_media = all_gen_files | where_exp: "file", "file.name contains project.title" %}
-  {% assign media_files = project_media | where_exp: "file", "file.extname == '.png' or file.extname == '.jpg' or file.extname == '.gif' or file.extname == '.mp4'" | sort: "name" %}
-  {% assign first_file = media_files | first %}
-  {% assign file_count = media_files | size %}
+  {% assign project_dir = project.path | remove: 'index.md' %}
+  {% assign first_file = nil %}
   
-  <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 4px; transition: box-shadow 0.2s;">
-    <h3 style="margin-top: 0;">
-      <a href="{{ project.url }}" style="text-decoration: none; color: #333;">
+  {% for file in generative_collection.files %}
+    {% if file.path contains project_dir %}
+        {% assign ext = file.path | split: '.' | last | downcase %}
+        {% if "jpg jpeg png gif mp4 webm" contains ext %}
+            {% assign first_file = file %}
+            {% break %}
+        {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  <div class="generative-item">
+     <h3>
+      <a href="{{ project.url }}">
         {{ project.title }}
       </a>
-    </h3>
-    <a href="{{ project.url }}" style="display: block;">
+        </h3>
+        <a href="{{ project.url }}" class="generative-item-link">
       {% if first_file %}
-        {% assign file_ext = first_file.extname | remove: '.' %}
+        {% assign file_ext = first_file.path | split: '.' | last | downcase %}
+        {% assign file_url = first_file.path | relative_url | replace: '/_generative/', '/generative/' %}
         {% if file_ext == 'mp4' or file_ext == 'webm' %}
-          <video style="width: 100%; height: auto;" muted loop onmouseover="this.play()" onmouseout="this.pause()">
-            <source src="{{ first_file.url }}" type="video/{{ file_ext }}">
-          </video>
+        <video src="{{ file_url }}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+        </video>
         {% else %}
-          <img src="{{ first_file.url }}" alt="{{ project.title }}" style="width: 100%; height: auto;">
+        <img src="{{ file_url }}" alt="{{ project.title }}">
         {% endif %}
+      {% else %}
+        <div class="no-preview-placeholder">
+          <span>No Preview</span>
+        </div>
       {% endif %}
-    </a>
-    <p style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">
+        </a>
+        
+        <!-- {% assign file_count = 0 %}
+        {% for file in generative_collection.files %}
+        {% if file.path contains project_dir %}
+         {% assign ext = file.path | split: '.' | last | downcase %}
+         {% if "jpg jpeg png gif mp4 webm" contains ext %}
+            {% assign file_count = file_count | plus: 1 %}
+         {% endif %}
+        {% endif %}
+        {% endfor %} -->
+
+        <!-- <p style="font-size: 0.9rem; color: #666; margin-bottom: 0;">
       {{ file_count }} {% if file_count == 1 %}piece{% else %}pieces{% endif %}
-    </p>
-    <p style="font-size: 0.85rem; color: #888; margin: 0;">{{ project.description }}</p>
+        </p> -->
   </div>
 {% endfor %}
 

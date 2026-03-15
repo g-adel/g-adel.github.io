@@ -5,39 +5,31 @@ secondary_content_override: true
 
 {{ content }}
 
-{% comment %}
-Auto-discover all media files in this project's folder
-Filter static files by the project's directory path
-{% endcomment %}
-
-{% assign project_name = page.title %}
-{% assign all_gen_files = site.static_files | where_exp: "file", "file.url contains '/generative/'" %}
-{% assign project_media = all_gen_files | where_exp: "file", "file.name contains project_name" %}
-
-{% comment %}Filter for media files only and sort by name{% endcomment %}
-{% assign media_files = project_media | where_exp: "file", "file.extname == '.png' or file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.gif' or file.extname == '.mp4' or file.extname == '.webm'" | sort: "name" %}
+{% assign current_project = page.title %}
+{% assign project_dir = page.path | remove: 'index.md' %}
+{% assign generative_collection = site.collections | where: "label", "generative" | first %}
 
 <div class="project-gallery">
-{% for file in media_files %}
-  {% assign file_ext = file.extname | remove: '.' %}
-  {% if file_ext == 'mp4' or file_ext == 'webm' %}
-    <div class="gallery-item">
-      <video controls autoplay loop muted style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-        <source src="{{ file.url }}" type="video/{{ file_ext }}">
+{% for file in generative_collection.files %}
+  {% if file.path contains project_dir %}
+    {% assign file_ext = file.path | split: '.' | last | downcase %}
+    {% if "jpg jpeg png gif mp4 webm" contains file_ext %}
+      {% assign file_name = file.path | split: '/' | last %}
+      {% assign file_url = file.path | relative_url | replace: '/_generative/', '/generative/' %}
+      {% if file_ext == 'mp4' or file_ext == 'webm' %}
+      <div class="gallery-item">
+        <video src="{{ file_url }}" controls autoplay loop muted playsinline>
         Your browser does not support the video tag.
-      </video>
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file.name }}</p>
-    </div>
-  {% elsif file_ext == 'gif' %}
-    <div class="gallery-item">
-      <img src="{{ file.url }}" alt="{{ project_name }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file.name }}</p>
-    </div>
-  {% else %}
-    <div class="gallery-item">
-      <img src="{{ file.url }}" alt="{{ project_name }}" style="max-width: 100%; height: auto; margin-bottom: 2rem;">
-      <p style="text-align: center; color: #666; font-size: 0.9rem;">{{ file.name }}</p>
-    </div>
+        </video>
+        <!-- <p style="text-align: center; opacity: 0.8; font-size: 0.9rem;">{{ file_name }}</p> -->
+      </div>
+      {% else %}
+      <div class="gallery-item">
+        <img src="{{ file_url }}" alt="{{ current_project }}">
+        <!-- <p style="text-align: center; opacity: 0.8; font-size: 0.9rem;">{{ file_name }}</p> -->
+      </div>
+      {% endif %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 </div>

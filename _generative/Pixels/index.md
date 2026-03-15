@@ -1,7 +1,8 @@
 ---
-title: Pixels
-description: Animated pixel-based art
-permalink: /generative/pixels/
+layout: generative-project
+title: "Pixels"
+project_name: Pixels
+color_mode: dark
 ---
 
-An animated exploration of pixel-based generative art.
+# Pixels

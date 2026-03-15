@@ -3,12 +3,16 @@ title: About
 permalink: /about/
 ---
 
-<div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
+
+<!-- <div style="display: flex; align-items: flex-start; margin-bottom: 20px;">
     <div style="flex: 1; margin-right: 20px;">
         Hello, and welcome to my little corner on the internet! I'm a PhD candidate in complex networks at Leiden University <a href="https://www.computationalnetworkscience.org/">Computational Network Science Group</a> and guest researcher at University of Amsterdam as part of <a href="www.planetworks.nl">PLANET-NL research group</a>. My research centers around analyzing complex network dynamics in social networks. I aim to use computational methods to identify emergent patterns and group-behaviour in temporal (population-scale) social networks. Additionally, I contribute for open knowledge initiatives and decentralized technologies.
     </div>
     <img src="/assets/Profile Picture.png" alt="Profile Picture" style="width: 200px; height: auto; flex-shrink: 0;">
-</div>
+</div> -->
+
+Hi! I'm a PhD candidate in complex networks at Leiden University [Computational Network Science Group](https://www.computationalnetworkscience.org/) and guest researcher at University of Amsterdam as part of [PLANET-NL research group](www.planetworks.nl). My research centers around analyzing complex network dynamics applied on social networks. I aim to use computational methods to identify emergent patterns and self-organization in temporal (population-scale) networks. Additionally, I contribute to open knowledge initiatives and decentralized technologies.
+
 
 ## My Research Focus
 

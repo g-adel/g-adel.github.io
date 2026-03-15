@@ -1,8 +1,52 @@
-{% if page.secondary_content %}
+{% if page.layout == 'generative-project' %}
+  {% assign generative_collection = site.collections | where: "label", "generative" | first %}
+  
+  <h3>More Projects</h3>
+  <div class="secondary-gallery-grid">
+    {% for project in site.generative %}
+      {% if project.title != page.title %}
+        {% assign project_dir = project.path | remove: 'index.md' %}
+        {% assign thumb_url = "" %}
+        {% assign is_video = false %}
+        
+        {% comment %} Find first image or video for this project {% endcomment %}
+        {% for file in generative_collection.files %}
+            {% if file.path contains project_dir %}
+                {% assign file_ext = file.path | split: '.' | last | downcase %}
+                {% if "jpg jpeg png gif mp4 webm" contains file_ext %}
+                    {% assign thumb_url = file.path | relative_url | replace: '/_generative/', '/generative/' %}
+                    {% if "mp4 webm" contains file_ext %}
+                        {% assign is_video = true %}
+                    {% endif %}
+                    {% break %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        <a href="{{ project.url }}" class="secondary-gallery-item">
+          {% if thumb_url != "" %}
+              {% if is_video %}
+                 <video src="{{ thumb_url }}" muted playsinline loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+              {% else %}
+                 <img src="{{ thumb_url }}" alt="{{ project.title }}">
+              {% endif %}
+          {% else %}
+              <div class="no-preview-placeholder">
+                <span>No Preview</span>
+              </div>
+          {% endif %}
+          <span class="gallery-caption">{{ project.title }}</span>
+        </a>
+
+      {% endif %}
+    {% endfor %}
+  </div>
+
+{% elsif page.secondary_content %}
   {{ page.secondary_content | markdownify }}
 {% else %}
   <!-- Default secondary content -->
-  <h2>About</h2>
+  <!-- <h2>About</h2>
   <p>PhD candidate in complex networks at Leiden University, researching social network dynamics and emergent patterns.</p>
   
   <h3>Quick Links</h3>
@@ -10,5 +54,5 @@
     <li><a href="/about/">Full About</a></li>
     <li><a href="/research/">Research</a></li>
     <li><a href="/contact/">Contact</a></li>
-  </ul>
+  </ul> -->
 {% endif %}

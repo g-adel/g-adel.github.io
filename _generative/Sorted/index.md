@@ -1,7 +1,9 @@
 ---
-title: Sorted
-description: Sorting visualizations
-permalink: /generative/sorted/
+layout: generative-project
+title: "Sorted"
+project_name: Sorted
+color_mode: light
 ---
 
-Visualizing sorting algorithms and ordered structures.
+# Sorted
+
