@@ -18,6 +18,7 @@
 
     :root {
       --golden-ratio: 1.61803398875;
+      --block-ratio: 0.85; /* 1 = squares, >1 = wider blocks, <1 = taller blocks */
       --border-color: #333;
       --bg-page: #f9f9f9;
       --bg-main: {{ bg_main_val }};
@@ -71,9 +72,10 @@
       width: 100%;
       height: 100%; 
       /* Desktop Default: Aspect Ratio Constrained */
-      aspect-ratio: 1.618 / 1;
+      /* Root width = left col (0.618 * ratio * H) + main (ratio * H) = golden-ratio * ratio * H */
+      aspect-ratio: calc(1.618 * var(--block-ratio)) / 1;
       max-height: 100vh;
-      max-width: 161.8vh; /* 100vh * 1.618 */
+      max-width: calc(161.8vh * var(--block-ratio)); /* scales with block ratio */
       
       display: flex;
       flex-direction: row-reverse; /* Right is Main */
@@ -89,8 +91,8 @@
     */
     .golden-main {
       height: 100%;
-      aspect-ratio: 1 / 1;
-      flex-shrink: 0; /* Force square */
+      aspect-ratio: var(--block-ratio) / 1;
+      flex-shrink: 0;
       border-left: 2px solid var(--border-color);
       padding: 2rem;
       background-color: var(--bg-main);
@@ -118,7 +120,7 @@
     */
     .golden-secondary {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      aspect-ratio: var(--block-ratio) / 1;
       flex-shrink: 0;
       border-top: 2px solid var(--border-color);
       padding: 1.5rem;
@@ -148,7 +150,7 @@
     .golden-tertiary {
       height: 100%; 
       width: auto; /* explicit auto allows aspect-ratio to drive width */
-      aspect-ratio: 1 / 1;
+      aspect-ratio: var(--block-ratio) / 1;
       flex-shrink: 0;
       border-left: 2px solid var(--border-color);
       padding: 1rem;
@@ -172,14 +174,14 @@
       overflow: hidden;
     }
 
-    /* Inner Bottom Square */
+    /* Inner Bottom Rectangle */
     .golden-quinary {
         width: 100%;
-        aspect-ratio: 1/1;
+        aspect-ratio: var(--block-ratio) / 1;
         flex-shrink: 0;
         border-top: 2px solid var(--border-color);
         background-color: var(--bg-quat);
-        padding: 0.5rem;
+        padding: 0.0rem;
         box-sizing: border-box;
         overflow-y: auto;
     }
@@ -385,8 +387,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 1.2rem;
-      height: 1.2rem;
+      width: 0.95rem;
+      height: 0.95rem;
       transition: color 0.2s, transform 0.2s;
     }
     

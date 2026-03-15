@@ -6,7 +6,7 @@ layout: golden
 title: Home
 secondary_content: |
   <div class="sidebar" style="flex: 1; max-width: 100%;">
-      <div style="transform: scale(0.9); transform-origin: top right;">
+      <div style="transform: scale(0.99); transform-origin: top right;">
         <script type="module" src="https://cdn.jsdelivr.net/npm/bsky-embed/dist/bsky-embed.es.js" async></script>
         <bsky-embed
           username="gamal-adel.bsky.social"
