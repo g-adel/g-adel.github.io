@@ -31,14 +31,10 @@
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
       width: 100%;
       font-family: system-ui, -apple-system, sans-serif;
       overflow-x: hidden; /* Prevent horizontal scroll */
       background-color: var(--bg-page); /* Constant off-white background */
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     h1, h2, h3 { margin-top: 0; }
@@ -62,6 +58,11 @@
     }
     p { line-height: 1.5; }
 
+    .golden-main img {
+      max-width: 100%;
+      height: auto;
+    }
+
     /* 
       Root Constraint Container
       - Fixed aspect ratio of 1.618
@@ -70,18 +71,13 @@
     .golden-root {
       background-color: var(--bg-page);
       width: 100%;
-      height: 100%; 
-      /* Desktop Default: Aspect Ratio Constrained */
-      /* Root width = left col (0.618 * ratio * H) + main (ratio * H) = golden-ratio * ratio * H */
-      aspect-ratio: calc(1.618 * var(--block-ratio)) / 1;
-      max-height: 100vh;
-      max-width: calc(161.8vh * var(--block-ratio)); /* scales with block ratio */
+      max-width: calc(161.8vh * var(--block-ratio));
+      margin: 0 auto;
+      min-height: 100vh;
       
       display: flex;
       flex-direction: row-reverse; /* Right is Main */
-      /* border: 2px solid var(--border-color); REMOVED PER REQUEST */
       box-sizing: border-box;
-      overflow: hidden;
     }
 
     /* 
@@ -90,14 +86,13 @@
        Width = Height
     */
     .golden-main {
-      height: 100%;
-      aspect-ratio: var(--block-ratio) / 1;
-      flex-shrink: 0;
+      flex: 1;
+      min-width: 0;
+      max-width: calc(100vh * var(--block-ratio));
       border-left: 2px solid var(--border-color);
       padding: 2rem;
       background-color: var(--bg-main);
       color: var(--text-main);
-      overflow-y: auto;
       box-sizing: border-box;
     }
 
@@ -106,12 +101,15 @@
        Fills remaining width (Golden Rectangle)
     */
     .golden-col-left {
-      flex-grow: 1;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: calc(100vh * var(--block-ratio) / 1.618);
+      flex-shrink: 0;
       display: flex;
       flex-direction: column-reverse; /* Bottom is Secondary */
-      height: 100%;
-      min-height: 0; /* Fix for nested flex scrolling/sizing */
       min-width: 0;
+      overflow: hidden;
     }
 
     /* 
@@ -501,6 +499,10 @@
     
     <!-- MAIN (Right Square) - Primary Content Area -->
     <div class="golden-main">
+      {% if page.date %}
+        <h1>{{ page.title }}</h1>
+        <p class="post-meta">{{ page.date | date: "%B %d, %Y" }}</p>
+      {% endif %}
       {{ content }}
     </div>
 

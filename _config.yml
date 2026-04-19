@@ -53,6 +53,12 @@ defaults:
       layout: golden
   - scope:
       path: ""
+      type: "posts"
+    values:
+      layout: golden
+      permalink: /:title/
+  - scope:
+      path: ""
       type: "generative"
     values:
       layout: generative-project

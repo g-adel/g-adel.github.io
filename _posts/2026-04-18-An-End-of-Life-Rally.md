@@ -1,6 +1,6 @@
 ---
-layout: post
-title: "An End-of-Life Rally: Why Dying Communities Look Their Best"
+layout: golden
+title: "Why Dying Communities Look Their Best"
 date: 2026-04-18
 ---
 
@@ -28,6 +28,7 @@ In fact, this burst in signs of life following a shock or shrinkage of a group o
 
 From a population dynamics perspective, when a community suffers from a reduction in membership inflow, the first symptom is not collapse, but population aging. As the demographic distribution becomes increasingly top-heavy with veteran users, it causes the average engagement and productivity metrics to rise. A well-known instance of this is the demographic dividend: when a country experiences a rapidly declining birthrate, its GDP per capita often inflates for a time simply because of the rising ratio of productive adults compared to new dependents. However, this statistical illusion can misdirect attention away from impending failure. So long as the influx of newcomers persistently fails to offset the exit rate of existing users, this period of apparent prosperity will eventually end, and the total population will significantly shirnk and possibly collapse.
 
+---
 
 [^1]: It should be noted that no blame is being placed on how the survey results were analyzed or presented. As a commenter on the video rightly pointed out, the presenter was given a measly 15-minute timeslot, making it nearly impossible to dive into complex longitudinal demographic shifts.
 
