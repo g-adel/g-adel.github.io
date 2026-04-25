@@ -2,13 +2,29 @@
   {{ page.tertiary_content | markdownify }}
 {% else %}
   <!-- Default tertiary content -->
-  <!-- <h3>Latest Updates</h3>
-  <ul>
-    {% for post in site.posts limit:3 %}
-      <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <br><small>{{ post.date | date: "%b %d, %Y" }}</small>
-      </li>
+  <h3>Latest Updates</h3>
+  <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+    {% for post in site.posts %}
+      <a class="tertiary-post-card" href="{{ post.url }}" style="display: block; text-decoration: none; color: inherit; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; transition: background-color 0.2s, box-shadow 0.2s;">
+        <div style="font-weight: 600; margin-bottom: 0.3rem;">{{ post.title }}</div>
+        <small style="opacity: 0.7;">{{ post.date | date: "%b %d, %Y" }}</small>
+      </a>
     {% endfor %}
-  </ul> -->
+  </div>
+
+  <style>
+    .tertiary-post-card:hover {
+      background-color: #f5f5f5;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .tertiary-post-card {
+        border-color: #444 !important;
+      }
+      .tertiary-post-card:hover {
+        background-color: #2a2a2a !important;
+      }
+    }
+  </style>
 {% endif %}

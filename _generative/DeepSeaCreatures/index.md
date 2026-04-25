@@ -1,8 +1,8 @@
 ---
 layout: generative-project
-title: "Transformations"
-project_name: Transformations
+title: "Deep Sea Creatures"
+project_name: DeepSeaCreatures
 color_mode: dark
 ---
 
-# Transformations
+# Deep Sea Creatures
